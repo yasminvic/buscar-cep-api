@@ -1,13 +1,30 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Domain.DTO;
+using Domain.Interfaces.IService;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Application.API.Controllers
 {
-    public class CepController : Controller
+    [ApiController]
+    public class CepController : ControllerBase
     {
-        [HttpGet]
-        public async Task<ActionResult> ProcuraCep()
+        private readonly ICepService _service;
+
+        public CepController(ICepService service)
         {
-            return View();
+            _service = service;
+        }
+
+        [HttpGet("{cep}")]
+        public async Task<ActionResult<ResponseApiDTO>> ProcuraCep(string cep)
+        {
+            var cepPesquisado = await _service.BuscarCep(cep);
+
+            if(cepPesquisado == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(cepPesquisado);
         }
     }
 }
