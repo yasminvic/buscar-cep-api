@@ -1,9 +1,11 @@
 ﻿using Domain.DTO;
 using Domain.Interfaces.IService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Application.API.Controllers
 {
+    [Authorize]
     [ApiController]
     public class CepController : ControllerBase
     {

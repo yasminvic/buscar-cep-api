@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Service", "src\Service\Application.Service.csproj", "{991B3B65-251F-4964-90A6-2272935FB40A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Service", "src\Service\Application.Service.csproj", "{991B3B65-251F-4964-90A6-2272935FB40A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{A0E692FD-6722-4423-87D2-A53E8F46FA58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{A0E692FD-6722-4423-87D2-A53E8F46FA58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra.Data.Repository", "src\Infra.Data.Repository\Infra.Data.Repository.csproj", "{B6C2AB52-DEA9-4F90-8F8E-4C28415F47C3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.API", "src\Application.API\Application.API.csproj", "{DDE1FB85-1A12-4695-B261-FE2FD84C99FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.API", "src\Application.API\Application.API.csproj", "{DDE1FB85-1A12-4695-B261-FE2FD84C99FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{A0E692FD-6722-4423-87D2-A53E8F46FA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0E692FD-6722-4423-87D2-A53E8F46FA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0E692FD-6722-4423-87D2-A53E8F46FA58}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B6C2AB52-DEA9-4F90-8F8E-4C28415F47C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B6C2AB52-DEA9-4F90-8F8E-4C28415F47C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B6C2AB52-DEA9-4F90-8F8E-4C28415F47C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B6C2AB52-DEA9-4F90-8F8E-4C28415F47C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DDE1FB85-1A12-4695-B261-FE2FD84C99FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDE1FB85-1A12-4695-B261-FE2FD84C99FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDE1FB85-1A12-4695-B261-FE2FD84C99FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
