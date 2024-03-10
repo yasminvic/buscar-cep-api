@@ -16,6 +16,7 @@ namespace Application.API.Controllers
             _service = service;
         }
 
+        [HttpPost]
         public async Task<ActionResult<UserDTO>> Incluir([FromBody] UserDTO user)
         {
             if(user == null)

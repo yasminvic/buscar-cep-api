@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Refit;
 using System.Text;
 
-const string ChaveSecreta = "9fbbdd98-f2f4-4673-b48e-083ec1be44dc";
+const string SECRET_KEY = "9fbbdd98-f2f4-4673-b48e-083ec1be44dc";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,7 +50,7 @@ builder.Services.AddAuthentication(options =>
         ValidateLifetime = true,
         ValidIssuer = "yasminvic",
         ValidAudience = "buscar_cep",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(ChaveSecreta))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(SECRET_KEY))
 
     };
 });
