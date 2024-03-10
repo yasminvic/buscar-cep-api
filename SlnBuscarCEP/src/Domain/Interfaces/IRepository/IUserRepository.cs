@@ -9,6 +9,7 @@ namespace Domain.Interfaces.IRepository
 {
     public interface IUserRepository
     {
+        List<User> GetAll();  
         Task<int> Save(User user);
     }
 }

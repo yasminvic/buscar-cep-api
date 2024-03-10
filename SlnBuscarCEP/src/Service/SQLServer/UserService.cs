@@ -18,6 +18,17 @@ namespace Application.Service.SQLServer
             _repository = repository;
         }
 
+        public List<UserDTO> GetAll()
+        {
+            return _repository.GetAll().Select(x => new UserDTO(){
+                id = x.Id,
+                email = x.Email,
+                password = x.Password
+            }).ToList();
+                
+           
+        }
+
         public async Task<int> Save(UserDTO user)
         {
             return await _repository.Save(user.MapToEntity());

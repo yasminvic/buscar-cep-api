@@ -1,4 +1,5 @@
 ﻿using Domain.DTO;
+using Domain.Interfaces.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -11,11 +12,21 @@ namespace Application.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        [HttpPost]
+        private readonly IUserService _userService;
 
+        public AuthController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
+        [HttpPost]
         public IActionResult Login([FromBody] UserDTO user)
         {
-            if(!(user.email == "admin@gmail.com" && user.password == "admin"))
+            var found = _userService.GetAll().Where(userDTO => userDTO.email == user.email)
+                                             .Where(userDTO => userDTO.password == user.password)
+                                             .FirstOrDefault();
+
+            if(found == null)
             {
                 return BadRequest("Login errado! Email ou Senha incorretos");
             }

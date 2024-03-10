@@ -1,6 +1,8 @@
 ﻿using Domain.Entity;
 using Domain.Interfaces.IRepository;
 using Infra.Data.Repository.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,11 @@ namespace Infra.Data.Repository.Repository
         public UserRepository(SQLServerContext context)
         {
             _context = context;
+        }
+
+        public  List<User> GetAll()
+        {
+            return  _context.Users.ToList();
         }
 
         public async Task<int> Save(User user)

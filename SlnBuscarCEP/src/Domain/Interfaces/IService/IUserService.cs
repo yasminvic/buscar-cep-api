@@ -9,6 +9,7 @@ namespace Domain.Interfaces.IService
 {
     public interface IUserService
     {
+        List<UserDTO> GetAll();
         Task<int> Save(UserDTO user);
     }
 }
