@@ -1,7 +1,9 @@
 ﻿using Application.Service.Integracao;
 using Domain.Interfaces.IRepository;
 using Domain.Interfaces.IService;
+using Infra.Data.Repository.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Refit;
 using System.Text;
@@ -10,13 +12,18 @@ const string ChaveSecreta = "9fbbdd98-f2f4-4673-b48e-083ec1be44dc";
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddDbContext<SQLServerContext>
+    (options => options.UseSqlServer("Server=LAPTOP-EBG33A6E\\SQLEXPRESS;Database=BuscarCep;User Id=sa;Password=gibi2016;TrustServerCertificate=True;Encrypt=False;"));
 
+
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+//Dependency Injection
 builder.Services.AddScoped<ICepService, CepService>();
 
 builder.Services.AddRefitClient<ICepRepository>().ConfigureHttpClient(c =>
