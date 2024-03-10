@@ -1,4 +1,5 @@
 ﻿using Domain.DTO;
+using Domain.Interfaces.IRepository;
 using Domain.Interfaces.IService;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,16 @@ namespace Application.Service.SQLServer
 {
     public class UserService : IUserService
     {
-        public Task<int> Save(UserDTO user)
+        private readonly IUserRepository _repository;
+
+        public UserService(IUserRepository repository)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+        }
+
+        public async Task<int> Save(UserDTO user)
+        {
+            return await _repository.Save(user.MapToEntity());
         }
     }
 }

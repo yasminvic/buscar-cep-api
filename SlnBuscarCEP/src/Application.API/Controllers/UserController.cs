@@ -1,4 +1,5 @@
 ﻿using Domain.DTO;
+using Domain.Interfaces.IService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,17 +9,21 @@ namespace Application.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //public Task<IActionResult> Incluir([FromBody] UserDTO user)
-        //{
-        //    try
-        //    {
-                
+        private readonly IUserService _service;
 
-        //    }
-        //    catch(Exception ex)
-        //    {
+        public UserController(IUserService service)
+        {
+            _service = service;
+        }
 
-        //    }
-        //}
+        public async Task<ActionResult<UserDTO>> Incluir([FromBody] UserDTO user)
+        {
+            if(user == null)
+            {
+                return BadRequest();
+            }
+
+            return new ObjectResult(await _service.Save(user));
+        }
     }
 }

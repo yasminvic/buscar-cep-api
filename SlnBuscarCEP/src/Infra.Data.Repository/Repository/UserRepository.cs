@@ -1,5 +1,6 @@
 ﻿using Domain.Entity;
 using Domain.Interfaces.IRepository;
+using Infra.Data.Repository.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,17 @@ namespace Infra.Data.Repository.Repository
 {
     public class UserRepository : IUserRepository
     {
-        public Task<int> Save(User user)
+        private readonly SQLServerContext _context;
+
+        public UserRepository(SQLServerContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+
+        public async Task<int> Save(User user)
+        {
+            _context.Add(user);
+            return await _context.SaveChangesAsync();
         }
     }
 }
