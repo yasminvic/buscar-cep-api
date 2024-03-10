@@ -1,7 +1,9 @@
 ﻿using Application.Service.Integracao;
+using Application.Service.SQLServer;
 using Domain.Interfaces.IRepository;
 using Domain.Interfaces.IService;
 using Infra.Data.Repository.Data;
+using Infra.Data.Repository.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -25,6 +27,8 @@ builder.Services.AddSwaggerGen();
 
 //Dependency Injection
 builder.Services.AddScoped<ICepService, CepService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddRefitClient<ICepRepository>().ConfigureHttpClient(c =>
 {
