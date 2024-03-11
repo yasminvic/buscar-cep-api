@@ -19,6 +19,7 @@ namespace Domain.DTO
         public string gia { get; set; }
         public string ddd { get; set; }
         public string siafi { get; set; }
+        public string proveniente { get; set; }
 
         public ResponseApiDTO MapToDTO(ResponseApi responseApi)
         {
@@ -33,8 +34,8 @@ namespace Domain.DTO
                 ibge = responseApi.Ibge,
                 gia = responseApi.Gia,
                 ddd = responseApi.Ddd,
-                siafi = responseApi.Siafi
-
+                siafi = responseApi.Siafi,
+                proveniente = responseApi.Proveniente,
             };
         }
         

@@ -15,9 +15,9 @@ const string SECRET_KEY = "9fbbdd98-f2f4-4673-b48e-083ec1be44dc";
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Context
 builder.Services.AddDbContext<SQLServerContext>
     (options => options.UseSqlServer("Server=LAPTOP-EBG33A6E\\SQLEXPRESS;Database=BuscarCep;User Id=sa;Password=gibi2016;TrustServerCertificate=True;Encrypt=False;"));
-
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -57,6 +57,7 @@ builder.Services.AddScoped<ICepService, CepService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+//Integração ViaCep
 builder.Services.AddRefitClient<ICepRepository>().ConfigureHttpClient(c =>
 {
     c.BaseAddress = new Uri("https://viacep.com.br");
@@ -81,6 +82,9 @@ builder.Services.AddAuthentication(options =>
 
     };
 });
+
+//Habilitar Memória Cache
+builder.Services.AddMemoryCache();
 
 var app = builder.Build();
 

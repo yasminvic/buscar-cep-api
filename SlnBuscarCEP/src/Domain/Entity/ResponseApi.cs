@@ -18,6 +18,7 @@ namespace Domain.Entity
         public string Gia { get; set; }
         public string Ddd { get; set; }
         public string Siafi { get; set; }
+        public string Proveniente { get; set; }
 
     }
 }
