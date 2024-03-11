@@ -2,14 +2,6 @@
 <p align="center">
 <img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
 </p>
-<p align="center">
- <a href="#objetivo">Objetivo</a> •
- <a href="#roadmap">Roadmap</a> • 
- <a href="#funcionalidades">Funcionalidades</a> • 
- <a href="#contribuicao">Contribuição</a> • 
- <a href="#licenc-a">Licença</a> • 
- <a href="#autor">Autor</a>
-</p>
 
 
 ## 📝 Descrição
@@ -25,7 +17,7 @@ C# | ASP.NET Core | Entity Framework Core | Web API C# | Refit
 
 <img src="https://img.shields.io/badge/CSharp-8d0579?style=for-the-badge&logo=csharp&logoColor=white"> 	<img src="https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white"> <img src="https://img.shields.io/badge/SQLServer-07405E?style=for-the-badge&logo=sqlserver&logoColor=white">
 
-## ⚙️ [Funcionalidades do Projeto](#funcionalidades)
+## ⚙️ Funcionalidades do Projeto
 
 - `Funcionalidade 1`: Consultar CEP
 - `Funcionalidade 2`: Cadastrar Usuário
