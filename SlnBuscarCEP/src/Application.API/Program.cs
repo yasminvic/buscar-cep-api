@@ -1,4 +1,5 @@
 ﻿using Application.Service.Integracao;
+using Application.Service.IntegracaoService;
 using Application.Service.SQLServer;
 using Domain.Interfaces.IRepository;
 using Domain.Interfaces.IService;
@@ -55,6 +56,7 @@ builder.Services.AddSwaggerGen(c =>
 //Dependency Injection
 builder.Services.AddScoped<ICepService, CepService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<ICacheService, CacheService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 //Integração ViaCep
@@ -85,6 +87,13 @@ builder.Services.AddAuthentication(options =>
 
 //Habilitar Memória Cache
 builder.Services.AddMemoryCache();
+
+//config redis
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.InstanceName = "memory";
+    options.Configuration = "localhost:6379";
+});
 
 var app = builder.Build();
 

@@ -3,6 +3,8 @@ using Domain.Interfaces.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace Application.API.Controllers
@@ -11,13 +13,13 @@ namespace Application.API.Controllers
     [ApiController]
     public class CepController : ControllerBase
     {
-        private const string MEMORY_KEY = "CEPs";
+        private const string MEMORY_KEY = "CEP-";
 
         private readonly ICepService _service;
-        private readonly IMemoryCache _memoryCache;
+        private readonly ICacheService _memoryCache;
 
 
-        public CepController(ICepService service, IMemoryCache memoryCache)
+        public CepController(ICepService service, ICacheService memoryCache)
         {
             _service = service;
             _memoryCache = memoryCache;
@@ -32,46 +34,34 @@ namespace Application.API.Controllers
                 return BadRequest("CEP inválido. Por favor, tente novamente!");
             }
 
+            //procurando no cache
+            var foundCache = await _memoryCache.Get($"{MEMORY_KEY}{cep}");
+            ResponseApiDTO responseCep;
 
-            List<ResponseApiDTO> listaCeps = new List<ResponseApiDTO>();
-
-            if (_memoryCache.TryGetValue(MEMORY_KEY, out List<ResponseApiDTO> ceps))
+            if (foundCache != null)
             {
-                foreach (var c in ceps)
-                {
-                    if(c.cep.Replace("-", "") == cep)
-                    {
-                        c.proveniente = "Cache";
-                        return Ok(c);
-                    } 
-                };
+                responseCep = JsonSerializer.Deserialize<ResponseApiDTO>(foundCache);
+                responseCep.proveniente = "Cache";
+                return Ok(responseCep);
             }
 
-            var cepPesquisado = await _service.BuscarCep(cep);
-            cepPesquisado.proveniente = "ViaCep";
-            listaCeps.Add(cepPesquisado);
-            ceps = listaCeps;
+            responseCep = await _service.BuscarCep(cep);
+            responseCep.proveniente = "ViaCep";
 
-            
             //Validação
-            if(cepPesquisado == null)
+            if(responseCep == null)
             {
                 return BadRequest("CEP informado não existe. Por favor, tente novamente!");
             }
-            if(cepPesquisado.cep == null)
+            if(responseCep.cep == null)
             {
                 return BadRequest("CEP não encontrado na base de dados. Por favor, tente novamente!");
             }
 
-            var memoryCacheConfig = new MemoryCacheEntryOptions
-            {
-                //tempo que vai ficar guardado no cache
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5),
-                Size = 2
-            };
-            _memoryCache.Set(MEMORY_KEY, ceps, memoryCacheConfig);
+            //salvando no cache
+            await _memoryCache.Set($"{MEMORY_KEY}{cep}", JsonSerializer.Serialize(responseCep));
 
-            return Ok(cepPesquisado);
+            return Ok(responseCep);
         }
 
 
