@@ -22,6 +22,7 @@ C# | ASP.NET Core | Entity Framework Core | Web API C# | Refit
 - `Funcionalidade 2`: Cadastrar Usuário
 - `Funcionalidade 3`: Listar todos os Usuários
 - `Funcionalidade 4`: Realizar autenticação para acessar API via TokenJWT
+- `Funcionalidade 5`: Solução de cache
 
 ## 💻 Pré-requisitos
 
