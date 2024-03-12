@@ -59,4 +59,8 @@ Para usar a API, siga estas etapas:
    ![caixinha](https://github.com/yasminvic/buscar-cep-api/assets/88940787/24767c32-dee6-486d-ae00-88627a539ba6)
 
 8. Clique novamente em Authorize e depois feche a caixinha
+<<<<<<< HEAD
 9. Pronto! Agora você pode usufruir da API
+=======
+9. Pronto! Agora você pode usufruir da API
+>>>>>>> 2f8113ecf4720730feb8221fb82097f9508059df
