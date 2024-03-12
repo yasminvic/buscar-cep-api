@@ -10,6 +10,7 @@ namespace Domain.Interfaces.IService
     public interface IUserService
     {
         List<UserDTO> GetAll();
+        Task<UserDTO> GetByEmail(string email);
         Task<int> Save(UserDTO user);
     }
 }

@@ -20,16 +20,20 @@ namespace Application.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromBody] UserDTO user)
+        public async Task<IActionResult> Login([FromBody] UserDTO user)
         {
-            var found = _userService.GetAll().Where(userDTO => userDTO.email == user.email)
-                                             .Where(userDTO => userDTO.password == user.password)
-                                             .FirstOrDefault();
+            UserDTO found = await _userService.GetByEmail(user.email);
 
             if(found == null)
             {
                 return BadRequest("Login errado! Email ou Senha incorretos");
             }
+
+            if (!found.ValidaSenha(user.password))
+            {
+                return BadRequest("Login errado! Email ou Senha incorretos");
+            }
+            
 
             var token = CriarToken();
             return Ok(new { token });

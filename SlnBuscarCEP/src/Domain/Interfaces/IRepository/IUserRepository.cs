@@ -9,7 +9,8 @@ namespace Domain.Interfaces.IRepository
 {
     public interface IUserRepository
     {
-        List<User> GetAll();  
+        List<User> GetAll();
+        Task<User> GetByEmail(string email);
         Task<int> Save(User user);
     }
 }

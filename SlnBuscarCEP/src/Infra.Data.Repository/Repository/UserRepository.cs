@@ -25,6 +25,11 @@ namespace Infra.Data.Repository.Repository
             return  _context.Users.ToList();
         }
 
+        public async Task<User> GetByEmail(string email)
+        {
+            return _context.Users.Where(user => user.Email == email).FirstOrDefault();
+        }
+
         public async Task<int> Save(User user)
         {
             _context.Add(user);

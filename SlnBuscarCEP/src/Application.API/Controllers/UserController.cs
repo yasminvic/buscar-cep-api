@@ -18,6 +18,18 @@ namespace Application.API.Controllers
             _service = service;
         }
 
+        [HttpGet("getAll")]
+        public async Task<ActionResult<List<UserDTO>>> GetAll()
+        {
+            return Ok(_service.GetAll());
+        }
+
+        [HttpGet("{email}")]
+        public async Task<ActionResult<UserDTO>> GetByEmail(string email)
+        {
+            return Ok(_service.GetByEmail(email));
+        }
+
         [HttpPost]
         public async Task<ActionResult<UserDTO>> Incluir([FromBody] UserDTO user)
         {
@@ -28,5 +40,6 @@ namespace Application.API.Controllers
 
             return new ObjectResult(await _service.Save(user));
         }
+
     }
 }

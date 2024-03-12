@@ -13,7 +13,10 @@ namespace Domain.DTO
         public string email { get; set; }
         public string password { get; set; }
 
-
+        public bool ValidaSenha(string senha)
+        {
+            return password.Equals(senha);
+        }
 
         public User MapToEntity()
         {
@@ -27,6 +30,11 @@ namespace Domain.DTO
 
         public UserDTO MapToDTO(User user)
         {
+            if(user == null)
+            {
+                return null;
+            }
+
             return new UserDTO
             {
                 id = user.Id,

@@ -29,6 +29,13 @@ namespace Application.Service.SQLServer
            
         }
 
+        public async Task<UserDTO> GetByEmail(string email) 
+        {
+            UserDTO user = new UserDTO();
+            return user.MapToDTO(await _repository.GetByEmail(email));
+                
+        }
+
         public async Task<int> Save(UserDTO user)
         {
             return await _repository.Save(user.MapToEntity());
