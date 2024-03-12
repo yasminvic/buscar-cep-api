@@ -37,7 +37,7 @@ Para usar a API, siga estas etapas:
 
 1. Clone este repositório ou baixe o arquivo Zip
     ```
-    $ git clone <https://github.com/tgmarinho/nlw1>
+    $ git clone https://github.com/yasminvic/buscar-cep-api.git
     ```
 2. Inicie uma instância do Redis localmente, utilizando Docker. Para isso, abra o Terminal da solução e insira
    ```
